@@ -1,7 +1,7 @@
 const PostBar = () => {
   return (
-    <div className="border-b border-gray-300">
-      <div className="navbar bg-base-100 ">
+    <div className="border-b  border-gray-300 md:mb-6 mb-3  lg:border-0" >
+      <div className="navbar lg:border border-gray-300 bg-base-100 p-5 lg:rounded-2xl " >
         <div className="dropdown  ml-3">
           <div
             tabIndex={0}

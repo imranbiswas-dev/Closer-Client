@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "user": "alex_01",
+    "content": "Just finished my morning run 🏃‍♂️ Feeling great!",
+    "image": "https://picsum.photos/seed/run/400/300",
+    "likes": 34,
+    "comments": ["Nice!", "Keep it up!", "Inspiring!"],
+    "timestamp": "2026-05-09T08:15:00"
+  },
+  {
+    "id": 2,
+    "user": "sara_dev",
+    "content": "Working on a new React project 🚀",
+    "image": "https://picsum.photos/seed/react/400/300",
+    "likes": 58,
+    "comments": ["Good luck!", "Share the repo!", "🔥🔥🔥"],
+    "timestamp": "2026-05-09T09:30:00"
+  },
+  {
+    "id": 3,
+    "user": "john_travels",
+    "content": "Exploring the streets of Tokyo 🌸",
+    "image": "https://picsum.photos/seed/tokyo/400/300",
+    "likes": 102,
+    "comments": ["Beautiful!", "Wish I was there!", "😍"],
+    "timestamp": "2026-05-08T19:45:00"
+  },
+  {
+    "id": 4,
+    "user": "maria_foodie",
+    "content": "Homemade pasta night 🍝",
+    "image": "https://picsum.photos/seed/pasta/400/300",
+    "likes": 76,
+    "comments": ["Yummy!", "Recipe please!", "Looks delicious!"],
+    "timestamp": "2026-05-07T20:10:00"
+  },
+  {
+    "id": 5,
+    "user": "tech_guru",
+    "content": "AI is changing the world 🤖",
+    "image": "https://picsum.photos/seed/ai/400/300",
+    "likes": 89,
+    "comments": ["True!", "Exciting times!", "Scary but cool!"],
+    "timestamp": "2026-05-06T14:00:00"
+  },
+  {
+    "id": 6,
+    "user": "emma_artist",
+    "content": "Finished my latest painting 🎨",
+    "image": "https://picsum.photos/seed/art/400/300",
+    "likes": 120,
+    "comments": ["Amazing!", "So talented!", "Love the colors!"],
+    "timestamp": "2026-05-05T17:25:00"
+  },
+  {
+    "id": 7,
+    "user": "football_fan",
+    "content": "Match day! ⚽",
+    "image": "https://picsum.photos/seed/football/400/300",
+    "likes": 45,
+    "comments": ["Go team!", "Who’s winning?", "Excited!"],
+    "timestamp": "2026-05-04T21:00:00"
+  },
+  {
+    "id": 8,
+    "user": "nature_love",
+    "content": "Hiking in the mountains 🏞️",
+    "image": "https://picsum.photos/seed/mountain/400/300",
+    "likes": 67,
+    "comments": ["Peaceful!", "Where is this?", "So cool!"],
+    "timestamp": "2026-05-03T10:40:00"
+  },
+  {
+    "id": 9,
+    "user": "movie_buff",
+    "content": "Watched an amazing film last night 🎬",
+    "image": "https://picsum.photos/seed/movie/400/300",
+    "likes": 54,
+    "comments": ["Which one?", "I need recommendations!", "Nice!"],
+    "timestamp": "2026-05-02T23:15:00"
+  },
+  {
+    "id": 10,
+    "user": "coding_ninja",
+    "content": "Debugging at 2 AM 🐛💻",
+    "image": "https://picsum.photos/seed/code/400/300",
+    "likes": 39,
+    "comments": ["Relatable!", "Stay strong!", "😂"],
+    "timestamp": "2026-05-01T02:00:00"
+  }
+]

@@ -1,129 +1,184 @@
 import { IoNotificationsSharp } from "react-icons/io5";
 import logo from "../../assets/Logo/closer_logo.png";
-import { BiSearch } from "react-icons/bi";
+import {
+  BiSearch,
+  BiHomeAlt,
+  BiUserCircle,
+  BiLayout,
+} from "react-icons/bi";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
-  return (
-    <div className="shadow-md bg-base-100 border-b border-gray-300">
-      <div className="lg:mx-5">
-        <div className="navbar">
-          <div className="navbar-start relative w-full">
-            <img className="w-15 absolute" src={logo} alt="" />
-            <h1 className=" text-2xl ml-12 font-bold ">CLOSER</h1>
+  const links = (
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          `flex flex-col items-center px-8 py-2 border-b-4 transition-all ${isActive ? "border-sky-600/90 text-sky-600/90" : "border-transparent hover:bg-gray-100 rounded-lg"}`
+        }
+      >
+        <BiHomeAlt size={28} />
+      </NavLink>
 
-            <div className="ml-5 w-full hidden md:block">
-              <label className="input">
-                <svg
-                  className="h-[1em] opacity-50"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2.5"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
-                  </g>
-                </svg>
-                <input type="search" className="grow " placeholder="Search" />
-                <kbd className="kbd kbd-sm">⌘</kbd>
-                <kbd className="kbd kbd-sm">K</kbd>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          `flex flex-col items-center px-8 py-2 border-b-4 transition-all ${isActive ? "border-sky-600/90 text-sky-600/90" : "border-transparent hover:bg-gray-100 rounded-lg"}`
+        }
+      >
+        <BiLayout size={28} />
+      </NavLink>
+
+      <NavLink
+        to="/profile"
+        className={({ isActive }) =>
+          `flex flex-col items-center px-8 py-2 border-b-4 transition-all ${isActive ? "border-sky-600/90 text-sky-600/90" : "border-transparent hover:bg-gray-100 rounded-lg"}`
+        }
+      >
+        <BiUserCircle size={28} />
+      </NavLink>
+      <NavLink
+        to="/marketplace"
+        className={({ isActive }) =>
+          `flex flex-col items-center px-8 py-2 border-b-4 transition-all ${isActive ? "border-sky-600/90 text-sky-600/90" : "border-transparent hover:bg-gray-100 rounded-lg"}`
+        }
+      >
+        <IoNotificationsSharp size={28} />
+      </NavLink>
+    </>
+  );
+
+  return (
+    <div className="bg-base-100 border-b border-gray-300 sticky top-0 z-50 w-full flex flex-col justify-center">
+      <div className="px-4">
+        <div className="navbar min-h-15">
+          {/* --- Left Side: Logo & Search --- */}
+          <div className="navbar-start gap-2">
+            <div className="flex items-center">
+              <img
+                className="w-10 h-10 object-contain"
+                src={logo}
+                alt="Closer Logo"
+              />
+              <h1 className="text-2xl font-black tracking-tighter text-sky-600/90 ">
+                CLOSER
+              </h1>
+            </div>
+            {/* Search Input for Desktop */}
+            <div className="ml-2 hidden md:block w-64">
+              <label className="input input-bordered bg-gray-100 border-none rounded-full flex items-center gap-2 h-10">
+                <BiSearch size={20} className="opacity-60" />
+                <input
+                  type="search"
+                  className="grow text-sm"
+                  placeholder="Search Closer"
+                />
               </label>
             </div>
+            
           </div>
-          
 
-          <div className="navbar-end ">
-            <div className="btn btn-circle hidden lg:flex items-center mr-3">
-              <IoNotificationsSharp size={28} />
-            </div>
-            {/* Mobile view */}
-            <div className="btn btn-circle lg:hidden">
-              <BiSearch size={24} />
-            </div>
+          {/* --- Middle Side: Desktop Navigation --- */}
+          <div className="navbar-center hidden lg:flex">
+            <div className="flex items-center gap-2">{links}</div>
+          </div>
 
+          {/* --- Right Side: User Actions --- */}
+          <div className="navbar-end gap-2">
+            {/* Search Icon for Mobile/Tablet */}
+            <button className="btn btn-ghost btn-circle md:hidden bg-gray-100">
+              <BiSearch size={20} />
+            </button>
+
+            {/* User Dropdown */}
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Item 3</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="dropdown dropdown-end hidden lg:block lg:mr-5">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full">
+                <div className="w-10 rounded-full bg-gray-200 hidden lg:block">
                   <img
-                    alt="Tailwind CSS Navbar component"
+                    alt="User Profile"
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   />
                 </div>
+
+                <div className="lg:hidden">
+                  <div className="flex-none">
+                    <button className="btn btn-square btn-ghost">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="inline-block h-5 w-5 stroke-current"
+                      >
+                        {" "}
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 6h16M4 12h16M4 18h16"
+                        ></path>{" "}
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
+
               <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-xl z-1 mt-3 w-64 p-2 shadow-xl border border-gray-100"
               >
+                {/* Mobile specific links shown in profile dropdown */}
+                <div className="lg:hidden border-b pb-2 mb-2">
+                  <li className="menu-title text-blue-600">Navigation</li>
+                  <li>
+                    <NavLink to="/">Home</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/marketplace">Marketplace</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/profile">Profile</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
+                  </li>
+                </div>
                 <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
+                  <a className="font-semibold py-3">Settings & Privacy</a>
                 </li>
                 <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
+                  <a className="font-semibold py-3 text-red-500">Logout</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+      </div>
+      <div className="mx-10 mb-5 lg:hidden">
+        {/* <label className="input w-full rounded-2xl">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input type="search" required placeholder="Search" />
+        </label> */}
+
+        <div className="flex justify-center">{links}</div>
       </div>
     </div>
   );
