@@ -1,6 +1,6 @@
 import LeftAside from "../Components/Aside/LeftAside";
 import RightAside from "../Components/Aside/RightAside";
-import PostBar from "../Components/Header/PostBar";
+import PostBar from "./PostBar";
 import Post from "./Post";
 
 const Home = () => {
@@ -21,6 +21,8 @@ const Home = () => {
       <section className="col-span-3 hidden lg:block ml-19 sticky top-20 h-screen overflow-y-auto ">
         <RightAside />
       </section>
+
+      
     </div>
   );
 };

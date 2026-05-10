@@ -6,7 +6,7 @@ import {
   BiUserCircle,
   BiLayout,
 } from "react-icons/bi";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const links = (
@@ -85,6 +85,8 @@ const Navbar = () => {
 
           {/* --- Right Side: User Actions --- */}
           <div className="navbar-end gap-2">
+
+            <Link to="/signUp" className="btn btn-info text-white">SignUp</Link>
             {/* Search Icon for Mobile/Tablet */}
             <button className="btn btn-ghost btn-circle md:hidden bg-gray-100">
               <BiSearch size={20} />
