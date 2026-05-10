@@ -1,14 +1,16 @@
 import { IoNotificationsSharp } from "react-icons/io5";
 import logo from "../../assets/Logo/closer_logo.png";
-import {
-  BiSearch,
-  BiHomeAlt,
-  BiUserCircle,
-  BiLayout,
-} from "react-icons/bi";
+import { BiSearch, BiHomeAlt, BiUserCircle, BiLayout } from "react-icons/bi";
 import { Link, NavLink } from "react-router";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut();
+  };
   const links = (
     <>
       <NavLink
@@ -75,7 +77,6 @@ const Navbar = () => {
                 />
               </label>
             </div>
-            
           </div>
 
           {/* --- Middle Side: Desktop Navigation --- */}
@@ -85,8 +86,16 @@ const Navbar = () => {
 
           {/* --- Right Side: User Actions --- */}
           <div className="navbar-end gap-2">
-
-            <Link to="/signUp" className="btn btn-info text-white">SignUp</Link>
+            {user ? (
+              ""
+            ) : (
+              <Link
+                to="/signUp"
+                className="btn btn-info text-white hidden md:block"
+              >
+                SignUp
+              </Link>
+            )}
             {/* Search Icon for Mobile/Tablet */}
             <button className="btn btn-ghost btn-circle md:hidden bg-gray-100">
               <BiSearch size={20} />
@@ -102,7 +111,10 @@ const Navbar = () => {
                 <div className="w-10 rounded-full bg-gray-200 hidden lg:block">
                   <img
                     alt="User Profile"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src={
+                      user?.photoURL ||
+                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    }
                   />
                 </div>
 
@@ -152,7 +164,12 @@ const Navbar = () => {
                   <a className="font-semibold py-3">Settings & Privacy</a>
                 </li>
                 <li>
-                  <a className="font-semibold py-3 text-red-500">Logout</a>
+                  <button
+                    onClick={() => handleLogOut()}
+                    className="font-semibold py-3 text-red-500"
+                  >
+                    Logout
+                  </button>
                 </li>
               </ul>
             </div>

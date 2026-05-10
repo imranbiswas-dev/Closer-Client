@@ -1,91 +1,78 @@
+import { FaFire, FaGift } from "react-icons/fa";
+
 const RightAside = () => {
+  const birthdays = [
+    {
+      id: 1,
+      name: "Sakib Hasan",
+      image: "https://i.pravatar.cc/40?img=1",
+    },
+    {
+      id: 2,
+      name: "Nusrat Jahan",
+      image: "https://i.pravatar.cc/40?img=2",
+    },
+  ];
+
+  const trends = [
+    "#HappyMothersDay",
+    "#BreakTheStigma",
+    "##BeautifulBangladesh",
+    "#CincoDeMayo2026",
+    "#Springtime",
+  ];
+
+
   return (
     <div
-      className="min-h-screen p-3 space-y-2 w-96 bg-base-100 -mt-10"
+      className="min-h-screen p-3 space-y-2 w-96 bg-base-100 "
       style={{ boxShadow: "-4px 0 6px rgba(0,0,0,0.1)" }}
     >
-      <div className="min-h-screen p-3 space-y-2 w-96   bg-base-100 shadow-md shadow-left">
-        <nav className=" space-y-8 text-sm">
-          <div className="space-y-2">
-            <h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-600">
-              Getting Started
-            </h2>
-            <div className="flex flex-col space-y-1">
-              <a rel="noopener noreferrer" href="#">
-                Installation
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Plugins
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Migrations
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Appearance
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Mamba UI
-              </a>
+      {/* Birthday Section */}
+      <div className="bg-base-200 rounded-2xl p-5 shadow-sm space-y-3">
+        <div className="flex items-center gap-2 mb-5">
+          <FaGift className="text-pink-500 text-xl" />
+          <h2 className="text-lg font-bold">Birthdays</h2>
+        </div>
+
+        <div className="space-y-4 ">
+          {birthdays.map((user) => (
+            <div
+              key={user.id}
+              className="flex items-center gap-3"
+            >
+              <img
+                src={user.image}
+                alt={user.name}
+                className="w-11 h-11 rounded-full object-cover"
+              />
+
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">{user.name}</span> has a
+                birthday today 🎉
+              </p>
             </div>
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-600">
-              Dashboard
-            </h2>
-            <div className="flex flex-col space-y-1">
-              <a rel="noopener noreferrer" href="#">
-                Header
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Drawer
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Page Title
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Menus
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Sidebar
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Footer
-              </a>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-600">
-              Pages
-            </h2>
-            <div className="flex flex-col space-y-1">
-              <a rel="noopener noreferrer" href="#">
-                Homepage
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Users
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Tools
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Settings
-              </a>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-600">
-              Misc
-            </h2>
-            <div className="flex flex-col space-y-1">
-              <a rel="noopener noreferrer" href="#">
-                Tutorials
-              </a>
-              <a rel="noopener noreferrer" href="#">
-                Changelog
-              </a>
-            </div>
-          </div>
-        </nav>
+          ))}
+        </div>
+      </div>
+
+      {/* Trending Topics */}
+      <div className="bg-base-200 rounded-2xl p-5 shadow-sm">
+        <div className="flex items-center gap-2 mb-4">
+          <FaFire className="text-orange-500 text-xl" />
+          <h2 className="text-lg font-bold">Trending Topics</h2>
+        </div>
+
+        <div className="space-y-3">
+          {trends.map((trend, index) => (
+            <button
+              key={index}
+              className="w-full text-left px-4 py-3 rounded-xl bg-base-100 hover:bg-primary hover:text-white transition-all duration-300"
+            >
+              {trend}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,34 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../Components/Context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((res) => {
+        console.log("user create successfully", res.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "You have logged in successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.error("Found Error ", err);
+      });
+  };
+
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -27,26 +55,28 @@ const SignUp = () => {
               </p>
 
               {/* Signup form */}
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <fieldset className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                      First Name
+                      Full Name
                     </label>
                     <input
                       type="text"
                       placeholder="John"
+                      name="name"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                      Last Name
+                      Nickname
                     </label>
                     <input
                       type="text"
                       placeholder="Snow"
+                      name="nickname"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -57,6 +87,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="text"
+                      name="phone"
                       placeholder="XXX-XX-XXXX-XXX"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -68,6 +99,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       placeholder="johnsnow@example.com"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -79,6 +111,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="url"
+                      name="photo"
                       placeholder="Enter your photo url"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -89,6 +122,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="text"
+                      name="address"
                       placeholder="Enter your address"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -100,6 +134,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="password"
+                      name="password"
                       placeholder="Enter your password"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -111,6 +146,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="password"
+                      name="confirmPassword"
                       placeholder="Enter your password"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />

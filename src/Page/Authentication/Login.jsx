@@ -1,10 +1,38 @@
 import { Link } from "react-router";
-import logo from '../../assets/Logo/closer_logo.png';
+import logo from "../../assets/Logo/closer_logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Components/Context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((res) => {
+        console.log("logged in successful", res.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "You have logged in successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.log("error is found", err);
+      });
+  };
+
   return (
     <div>
       <div className="bg-white dark:bg-gray-900">
-        <div className="flex justify-center md:min-h-[calc(100vh-64px)] min-h-[calc(100vh-129px)]">
+        <div className="flex justify-center lg:min-h-[calc(100vh-64px)] min-h-[calc(100vh-129px)] ">
           {/* Left side image */}
           <div
             className="hidden bg-cover lg:block lg:w-2/3"
@@ -19,7 +47,8 @@ const Login = () => {
                   CLOSER
                 </h2>
                 <p className="max-w-xl mt-3 text-gray-300">
-                  Connect with friends, family and communities of people who share your interests.
+                  Connect with friends, family and communities of people who
+                  share your interests.
                 </p>
               </div>
             </div>
@@ -30,11 +59,7 @@ const Login = () => {
             <div className="flex-1">
               <div className="text-center">
                 <div className="flex justify-center mx-auto">
-                  <img
-                    className="w-30 h-30"
-                    src={logo}
-                    alt="logo"
-                  />
+                  <img className="w-30 h-30" src={logo} alt="logo" />
                 </div>
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                   Sign in to access your account
@@ -42,7 +67,7 @@ const Login = () => {
               </div>
 
               <div className="mt-8">
-                <form>
+                <form onSubmit={handleSignIn}>
                   {/* Email */}
                   <div>
                     <label
@@ -103,7 +128,8 @@ const Login = () => {
 
                 <p className="mt-6 text-sm text-center text-gray-400">
                   Don&apos;t have an account yet?{" "}
-                  <Link to="/signUp"
+                  <Link
+                    to="/signUp"
                     href="#"
                     className="text-blue-500 focus:outline-none focus:underline hover:underline"
                   >
