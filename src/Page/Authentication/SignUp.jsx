@@ -5,24 +5,47 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    // get all form data
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    const { email, password, confirmPassword, ...userData } = data;
+
+    // password match check
+    if (password !== confirmPassword) {
+      return Swal.fire({
+        icon: "error",
+        title: "Passwords do not match",
+      });
+    }
 
     createUser(email, password)
       .then((res) => {
         console.log("user create successfully", res.user);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "You have logged in successfully.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        e.target.reset();
+      
+        // === send to db ===
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(userData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Account created successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              e.target.reset();
+            }
+          });
       })
       .catch((err) => {
         console.error("Found Error ", err);
