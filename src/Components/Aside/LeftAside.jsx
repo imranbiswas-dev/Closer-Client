@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext/AuthContext";
+import { Link } from "react-router";
+
 const LeftAside = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       {/* Navigation Toggle */}
@@ -116,7 +121,7 @@ const LeftAside = () => {
           <div className="mt-auto p-2 border-y border-gray-200 dark:border-neutral-700">
             {/* Account Dropdown */}
             <div className="hs-dropdown [--strategy:absolute] [--auto-close:inside] relative w-full inline-flex">
-              <button
+              <Link to={`/profile/${user?.email}`}
                 id="hs-sidebar-header-example-with-dropdown"
                 type="button"
                 className="w-full inline-flex shrink-0 items-center gap-x-2 p-2 text-start text-sm text-gray-800 dark:text-neutral-200 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-700 focus:outline-hidden focus:bg-gray-100 dark:focus:bg-neutral-700"
@@ -126,10 +131,10 @@ const LeftAside = () => {
               >
                 <img
                   className="shrink-0 size-5 rounded-full"
-                  src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src={user?.photo}
                   alt="Avatar"
                 />
-                Mia Hudson
+                {user?.name}
                 <svg
                   className="shrink-0 size-3.5 ms-auto"
                   xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +150,7 @@ const LeftAside = () => {
                   <path d="m7 15 5 5 5-5" />
                   <path d="m7 9 5-5 5 5" />
                 </svg>
-              </button>
+              </Link>
 
               <div
                 className="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-20 bg-white dark:bg-neutral-900 border border-transparent rounded-lg shadow-lg"

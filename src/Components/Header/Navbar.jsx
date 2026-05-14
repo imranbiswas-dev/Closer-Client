@@ -32,7 +32,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/profile"
+        to={`/profile/${user?.email}`}
         className={({ isActive }) =>
           `flex flex-col items-center px-8 py-2 border-b-4 transition-all ${isActive ? "border-sky-600/90 text-sky-600/90" : "border-transparent hover:bg-gray-100 rounded-lg"}`
         }
@@ -112,7 +112,7 @@ const Navbar = () => {
                   <img
                     alt="User Profile"
                     src={
-                      user?.photoURL ||
+                      user?.photo ||
                       "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                     }
                   />

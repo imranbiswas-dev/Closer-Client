@@ -1,23 +1,27 @@
+import { useContext } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { FaComments, FaShare } from "react-icons/fa";
+import { AuthContext } from "../Context/AuthContext/AuthContext";
 
-const PostCard = () => {
+const PostCard = ({post}) => {
+  const {user}=useContext(AuthContext)
+  const {postTitle, photo, authorName, authorPhoto, createdAt} = post
   return (
-    <div className="max-w-xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+    <div className=" lg:w-170 w-ful  mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800">
       
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-5 pb-3">
         <div className="flex items-center gap-3">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-mYZIQsFRJxHB3-V4qFr-25A75mSktJzv3w&s"
+            src={authorPhoto}
             alt="Leroy Jenkins"
             className="w-11 h-11 rounded-full object-cover ring-2 ring-violet-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900"
           />
           <div>
             <a href="#" className="font-semibold text-gray-900 dark:text-white hover:underline">
-              Leroy Jenkins
+              {authorName}
             </a>
-            <p className="text-xs text-gray-500 dark:text-gray-400">4 hours ago</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{createdAt}</p>
           </div>
         </div>
 
@@ -31,14 +35,14 @@ const PostCard = () => {
       {/* Post Content */}
       <div className="px-5 pb-3">
         <h2 className="text-[17px] leading-snug font-medium text-gray-900 dark:text-gray-100">
-          Marvel Writer Says This Original Avenger Is Truly Done With the MCU
+          {postTitle}
         </h2>
       </div>
 
       {/* Image */}
       <div className="relative">
         <img
-          src="https://images.thedirect.com/media/article_full/marvel-writer-says-this-original-avenger-is-truly-done-with-the-mcu.jpg"
+          src={photo}
           alt="Post image"
           className="w-full object-cover max-h-105 bg-gray-100 dark:bg-gray-800"
         />

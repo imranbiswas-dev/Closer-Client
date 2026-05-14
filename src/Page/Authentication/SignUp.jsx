@@ -4,7 +4,7 @@ import { AuthContext } from "../../Components/Context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { user, createUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,12 +26,12 @@ const SignUp = () => {
     createUser(email, password)
       .then((res) => {
         console.log("user create successfully", res.user);
-      
+
         // === send to db ===
         fetch("http://localhost:5000/user", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify(userData),
+          body: JSON.stringify({ email, ...userData }),
         })
           .then((res) => res.json())
           .then((data) => {
@@ -92,7 +92,7 @@ const SignUp = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="hidden">
                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                       Nickname
                     </label>
@@ -104,7 +104,7 @@ const SignUp = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="hidden">
                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                       Phone Number
                     </label>
@@ -150,6 +150,36 @@ const SignUp = () => {
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
+                  {/* Category Dropdown */}
+                  <div>
+                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                      Category
+                    </label>
+                    <select
+                      name="category"
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    >
+                      <option value="" disabled selected>
+                        Select your category
+                      </option>
+                      <option value="creator">Digital Creator</option>
+                      <option value="student">Student</option>
+                      <option value="engineer">Self employed</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                      Date of Birth
+                    </label>
+                    <input
+                      type="date"
+                      name="birth"
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg 
+      dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 
+      focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                  </div>
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -174,6 +204,29 @@ const SignUp = () => {
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
+                  <div className="hidden">
+                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                      Write about yourself
+                    </label>
+                    <input
+                      type="text"
+                      name="bio"
+                      placeholder="Enter your boi"
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                  </div>
+                  <div className="hidden">
+                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                      Education
+                    </label>
+                    <input
+                      type="text"
+                      name="education"
+                      placeholder="Enter your education"
+                      className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                  </div>
+
                   <button className="flex mt-5 items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                     <span>Sign Up</span>
                     <svg
