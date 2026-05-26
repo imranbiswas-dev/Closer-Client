@@ -3,7 +3,7 @@ import AddPost from "./AddPost";
 import { AuthContext } from "../Components/Context/AuthContext/AuthContext";
 
 
-const PostBar = () => {
+const PostBar = ({posts,setPosts}) => {
   const {user} = useContext(AuthContext)
   return (
     <div className="border-b  border-gray-300 md:mb-6 mb-3  md:border-0 md:mt-5 lg:mt-0 md:w-170 mx-auto ">
@@ -65,7 +65,7 @@ const PostBar = () => {
                 </button>
               </div>
             </form>
-            <AddPost />
+            <AddPost posts={posts} setPosts={setPosts} />
           </div>
         </dialog>
       </div>

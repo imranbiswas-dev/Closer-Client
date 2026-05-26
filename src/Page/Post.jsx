@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import PostCard from "../Components/CardComponent/PostCard";
-const Post = () => {
-  const [posts, setPosts] = useState([]);
+const Post = ({posts,setPosts}) => {
+
 
   useEffect(() => {
     fetch("http://localhost:5000/post")
@@ -17,7 +17,7 @@ const Post = () => {
     <div className="flex flex-col gap-5">
       {posts.map((post) => (
         <div key={post._id}>
-          <PostCard post={post} />
+          <PostCard post={post} posts={posts} setPosts={setPosts} />
         </div>
       ))}
     </div>

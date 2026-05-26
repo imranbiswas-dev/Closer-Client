@@ -1,44 +1,39 @@
-import { BiLink, BiText, BiSend } from "react-icons/bi";
-
+import React, { useContext } from "react";
+import { BiLink, BiSend, BiText } from "react-icons/bi";
 import { AuthContext } from "../Components/Context/AuthContext/AuthContext";
-import { useContext } from "react";
+import { useLoaderData, useNavigate } from "react-router";
 
-
-const AddPost = ({ posts, setPosts }) => {
+const EditPost = () => {
   const { user } = useContext(AuthContext);
+  const data = useLoaderData();
+  const { _id, postTitle, photo } = data;
 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const newPost = Object.fromEntries(formData.entries());
+    const updatePost = Object.fromEntries(formData.entries());
 
-    const postWithUser = {
-      ...newPost,
-      authorName: user?.name,
-      authorPhoto: user?.photo,
-      authorEmail: user?.email,
-      createdAt: new Date().toISOString(),
-    };
-
-    fetch("http://localhost:5000/post", {
-      method: "POST",
+    fetch(`http://localhost:5000/post/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(postWithUser),
+      body: JSON.stringify(updatePost),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("Post created:", data);
-
-        setPosts([{ ...postWithUser, _id: data.insertedId }, ...posts]);
+        setTimeout(() => {
+          navigate("/");
+        }, 1600);
       });
   };
-
   return (
-    <div className=" rounded-xl   w-full max-w-lg mx-auto overflow-hidden ">
+    <div className="mx-5">
+        <div className=" rounded-xl   w-full max-w-lg md:mx-auto overflow-hidden ">
       {/* Header */}
 
       <div className="flex space-x-4 m-5">
@@ -58,7 +53,7 @@ const AddPost = ({ posts, setPosts }) => {
           <span className="text-xs dark:text-gray-600">Public</span>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="md:p-4 space-y-4">
+      <form onSubmit={handleUpdate} className="md:p-4 space-y-4">
         {/* User Identity */}
 
         {/* Post Title / Content */}
@@ -68,6 +63,7 @@ const AddPost = ({ posts, setPosts }) => {
           </label>
           <textarea
             name="postTitle"
+            defaultValue={postTitle}
             placeholder="What's on your mind?"
             className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none min-h-25 transition-all"
             required
@@ -82,6 +78,7 @@ const AddPost = ({ posts, setPosts }) => {
           <input
             type="url"
             name="photo"
+            defaultValue={photo}
             placeholder="https://example.com/image.jpg"
             className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
           />
@@ -96,11 +93,12 @@ const AddPost = ({ posts, setPosts }) => {
           className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md"
         >
           <BiSend size={20} />
-          Publish Post
+          Update Post
         </button>
       </form>
+    </div>
     </div>
   );
 };
 
-export default AddPost;
+export default EditPost;

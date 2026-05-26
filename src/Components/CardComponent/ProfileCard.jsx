@@ -64,7 +64,7 @@ const ProfileCard = ({ profile }) => {
 
           {/* You can open the modal using document.getElementById('ID').showModal() method */}
           <button
-            className="flex gap-2 mt-5 items-center justify-center  px-6 py-3 text-sm tracking-wide text-white bg-blue-500 rounded-lg hover:bg-blue-400"
+            className="flex gap-2 mt-5 items-center justify-center  px-6 py-3 text-sm tracking-wide text-white bg-blue-500 rounded-lg hover:bg-blue-400 active:scale-95"
             onClick={() => document.getElementById("my_modal_3").showModal()}
           >
             <MdOutlineEdit size={24} />

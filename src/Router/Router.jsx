@@ -6,6 +6,9 @@ import SignUp from "../Page/Authentication/SignUp";
 import Login from "../Page/Authentication/Login";
 import UpdateProfile from "../Page/UpdateProfile";
 import AddPost from "../Page/AddPost";
+import Dashboard from "../Page/Dashboard";
+import Notification from "../Page/Notification";
+import EditPost from "../Page/EditPost";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +46,20 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login,
+      },
+      {
+        path: "/dashboard",
+        Component: Dashboard,
+      },
+      {
+        path: "/notification",
+        Component: Notification,
+      },
+      {
+        path: "/editPost/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/post/${params.id}`),
+        Component: EditPost,
       },
     ],
   },
