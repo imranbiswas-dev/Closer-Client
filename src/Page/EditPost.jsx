@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+
 import { BiLink, BiSend, BiText } from "react-icons/bi";
 import { AuthContext } from "../Components/Context/AuthContext/AuthContext";
 import { useLoaderData, useNavigate } from "react-router";
+import { useContext } from "react";
 
 const EditPost = () => {
   const { user } = useContext(AuthContext);

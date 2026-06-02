@@ -4,7 +4,7 @@ import { AuthContext } from "../../Components/Context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { user, createUser } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -49,7 +49,7 @@ const Profile = () => {
             
             <div className="space-y-4 text-gray-700">
               {/* Category */}
-              <div className="p-3 bg-blue-50 rounded-lg text-blue-700 font-semibold text-center">
+              <div className="p-3 bg-blue-50 rounded-lg text-sky-700 font-semibold text-center">
                 {profileData?.category || "Community Member"}
               </div>
 

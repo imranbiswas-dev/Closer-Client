@@ -9,36 +9,83 @@ import AddPost from "../Page/AddPost";
 import Dashboard from "../Page/Dashboard";
 import Notification from "../Page/Notification";
 import EditPost from "../Page/EditPost";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-
     Component: Layout,
-
     children: [
       {
         index: true,
-        Component: Home,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile",
-        Component: Profile,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile/:email",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/user/${params.email}`),
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/updateProfile",
-        Component: UpdateProfile,
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addPost",
-        Component: AddPost,
+        element: (
+          <PrivateRoute>
+            <AddPost />
+          </PrivateRoute>
+        ),
       },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/notification",
+        element: (
+          <PrivateRoute>
+            <Notification />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/editPost/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/post/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <EditPost />
+          </PrivateRoute>
+        ),
+      },
+
+      // Public routes
       {
         path: "/signUp",
         Component: SignUp,
@@ -46,20 +93,6 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login,
-      },
-      {
-        path: "/dashboard",
-        Component: Dashboard,
-      },
-      {
-        path: "/notification",
-        Component: Notification,
-      },
-      {
-        path: "/editPost/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/post/${params.id}`),
-        Component: EditPost,
       },
     ],
   },
